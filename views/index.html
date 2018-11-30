@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>Exercise Tracker</title>
+  </head>
+  <body>
+    <h2 class="main-title">Exercise Tracker</h2>
+    <div class="how-it-works">
+      <div class="section">
+        1. Can create a new user at : <strong>/api/exercise/new-user</strong> ,
+        by passing in the req body a username.
+      </div>
+      <div class="section">
+        2. Get all the users at : <strong>/exercise/users</strong>.
+      </div>
+      <div class="section">
+        3. Can create a new exercise at : <strong>/api/exercise/add</strong>.
+        Passing a valid userId, description, duration, and date which is
+        optionally. If not present , it will be automaticly set to today.
+      </div>
+      <div class="section">
+        4. Retrieve exercises for a user at :
+        <strong>/api/exercise/log?userId=yourId</strong>. Passing a valid
+        userId, it will return all the exercises for this specific user. In
+        adition you can filter the results by passing aditional parametters.
+        Suported one are : from (date),to (date) and limit(number).
+      </div>
+      <h5>
+        (You can use the UI present under, to test the API endpoints easier.)
+      </h5>
+    </div>
+    <div class="user-related">
+      <div class="section create-user">
+        <form class="create-user" action="/api/exercise/new-user" method="POST">
+          <h2>Create a new user:</h2>
+          <label>
+            <p>*Username:</p>
+            <input
+              class="basic-input"
+              id="username"
+              type="text"
+              placeholder="username"
+              name="username"
+            />
+          </label>
+          <input type="submit" value="register" />
+        </form>
+      </div>
+      <div class="section get-all-users">
+        <h2>Get all users:</h2>
+        <div class="get-all-btn-wrapper">
+          <a class="get-all-btn" href="/api/exercise/users">Get all users</a>
+        </div>
+      </div>
+    </div>
+    <div class="exercise-related">
+      <div class="section create-exercise">
+        <form class="create-exercise" action="/api/exercise/add" method="POST">
+          <h2>Create a new expercise:</h2>
+          <label>
+            <p>*User id:</p>
+            <input
+              class="basic-input"
+              id="userId"
+              type="text"
+              placeholder="userId"
+              name="userId"
+            />
+          </label>
+          <label>
+            <p>*Duration (mins):</p>
+            <input
+              class="basic-input"
+              id="duration"
+              type="number"
+              min="1"
+              placeholder="duration (mins)"
+              name="duration"
+            />
+          </label>
+          <label>
+            <p>Date:</p>
+            <input class="basic-input" id="date" type="date" name="date" />
+          </label>
+          <label>
+            *Description:
+            <textarea
+              placeholder="Description"
+              id="description"
+              name="description"
+            ></textarea>
+          </label>
+          <input type="submit" value="create" />
+        </form>
+      </div>
+      <div class="section get-exercise">
+        <form class="get-exercise" action="/api/exercise/log">
+          <h2>Get exercises, for a specific user:</h2>
+          <label>
+            <p>*User id:</p>
+            <input
+              name="userId"
+              id="get-exercise-userId"
+              type="text"
+              placeholder="userId"
+            />
+          </label>
+          <label>
+            <p>From:</p>
+            <input name="from" type="date" id="get-exercise-date-from" />
+          </label>
+          <label>
+            <p>To:</p>
+            <input name="to" type="date" id="get-exercise-date-to" />
+          </label>
+          <label>
+            <p>Limit:</p>
+            <input name="limit" type="number" min="1" id="get-exercise-limit" />
+          </label>
+          <input type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
